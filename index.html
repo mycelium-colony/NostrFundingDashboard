@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nostr Funding & Infrastructure Map</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes growWidth { from { width: 0; } }
+    .animate-bar { animation: growWidth 1s ease-out forwards; }
+    .bar-hover:hover { filter: brightness(1.2); }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--background); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-btn.active { 
+      border-bottom: 2px solid var(--foreground); 
+      color: var(--foreground); 
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-6 font-sans">
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- Header Section -->
+    <header class="border-b border-[var(--border)] pb-4">
+      <h1 class="text-3xl font-bold text-[var(--foreground)] tracking-tight">Nostr Funding & Infrastructure</h1>
+      <p class="text-[var(--muted-foreground)] mt-2 leading-relaxed max-w-4xl">
+        A falsifiable mapping of the Nostr ecosystem. Evaluating financial concentration via human grantees, tracking technical dependency weight, and documenting the timeline of capital deployment.
+      </p>
+      
+      <!-- Tabs -->
+      <div class="flex gap-6 mt-6 border-b border-[var(--border)] text-[var(--muted-foreground)] font-medium">
+        <button class="tab-btn active pb-2 hover:text-[var(--foreground)] transition-colors" onclick="switchTab('ledger')">The Ledger</button>
+        <button class="tab-btn pb-2 hover:text-[var(--foreground)] transition-colors" onclick="switchTab('dependencies')">Technical Dependencies</button>
+        <button class="tab-btn pb-2 hover:text-[var(--foreground)] transition-colors" onclick="switchTab('timeline')">Timeline</button>
+      </div>
+    </header>
+
+    <!-- ============================================== -->
+    <!-- TAB 1: THE LEDGER                              -->
+    <!-- ============================================== -->
+    <div id="ledger" class="tab-content active space-y-8 animate-[fadeIn_0.3s_ease-in-out]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- SATS LEDGER -->
+        <section class="bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-sm overflow-hidden flex flex-col">
+          <div class="p-6 border-b border-[var(--border)] bg-[var(--sidebar)] flex justify-between items-center">
+            <div>
+              <h2 class="text-xl font-bold text-[var(--foreground)] flex items-center gap-2"><span class="text-orange-500">₿</span> The Sats Ledger</h2>
+              <p class="text-[var(--muted-foreground)] text-sm mt-1">15 nodes folded into 14 humans.</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-black text-[var(--foreground)]">49.109 <span class="text-sm font-normal text-[var(--muted-foreground)]">BTC</span></div>
+              <div class="text-xs text-[var(--muted-foreground)] uppercase tracking-wider font-semibold">Total Sampled</div>
+            </div>
+          </div>
+          <div class="p-6 flex-1 overflow-y-auto">
+            <div class="mb-6 p-4 rounded-lg border border-orange-500/30 bg-orange-500/5 flex justify-between items-center">
+              <div>
+                <h3 class="text-orange-600 dark:text-orange-400 font-semibold">Top 5 Concentration</h3>
+                <p class="text-xs text-[var(--muted-foreground)] mt-1">Top 5 human recipients vs the rest of the sample.</p>
+              </div>
+              <div class="text-xl font-bold text-[var(--foreground)] text-right">69.4%<br><span class="text-sm font-normal text-[var(--muted-foreground)]">34.07 BTC</span></div>
+            </div>
+            <div class="space-y-5" id="btc-container"></div>
+          </div>
+        </section>
+
+        <!-- USD LEDGER -->
+        <section class="bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-sm overflow-hidden flex flex-col">
+          <div class="p-6 border-b border-[var(--border)] bg-[var(--sidebar)]">
+            <h2 class="text-xl font-bold text-[var(--foreground)] flex items-center gap-2"><span class="text-green-500">$</span> The USD Ledger</h2>
+            <p class="text-[var(--muted-foreground)] text-sm mt-1">Foundations, Equity, and Audits.</p>
+          </div>
+          <div class="p-6 flex-1 overflow-y-auto space-y-6">
+            <div>
+              <h3 class="text-lg font-bold border-b border-[var(--border)] pb-2 mb-4">#startsmall & OpenSats</h3>
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-[var(--sidebar)] border border-[var(--border)] p-4 rounded-lg">
+                  <div class="text-[var(--muted-foreground)] text-xs uppercase font-semibold mb-1">Tracked Support</div>
+                  <div class="text-2xl font-bold text-green-600 dark:text-green-400">$31M</div>
+                </div>
+                <div class="bg-[var(--sidebar)] border border-[var(--border)] p-4 rounded-lg">
+                  <div class="text-[var(--muted-foreground)] text-xs uppercase font-semibold mb-1">Nostr Earmark</div>
+                  <div class="text-2xl font-bold text-green-600 dark:text-green-400">$10M</div>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex justify-between text-sm border-b border-[var(--border)] border-dashed pb-2"><span>Allocated (end-2024)</span><span class="font-mono">~$8,900,000</span></div>
+                <div class="flex justify-between text-sm border-b border-[var(--border)] border-dashed pb-2"><span>Payouts (2025)</span><span class="font-mono">$3,205,776</span></div>
+                <div class="flex justify-between text-sm border-b border-[var(--border)] border-dashed pb-2"><span>Payouts (H1 2026)</span><span class="font-mono">$1,430,816</span></div>
+                <div class="flex justify-between text-sm border-b border-[var(--border)] border-dashed pb-2"><span>Payable (June 2026)</span><span class="font-mono">$801,317</span></div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <h3 class="font-semibold mb-2 border-b border-[var(--border)] pb-1">HRF</h3>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex justify-between"><span class="text-[var(--muted-foreground)]">Damus</span> <span class="font-mono">$50,000</span></li>
+                  <li class="flex justify-between"><span class="text-[var(--muted-foreground)]">Coracle</span> <span class="font-mono">$50,000</span></li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-2 border-b border-[var(--border)] pb-1">Equity</h3>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex justify-between"><span class="text-[var(--muted-foreground)]">Primal (Seed)</span> <span class="font-mono">$1,000,000</span></li>
+                  <li class="flex justify-between"><span class="text-[var(--muted-foreground)]">Nostria (Pre)</span> <span class="font-mono">$30,000</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- TAB 2: TECHNICAL DEPENDENCIES                  -->
+    <!-- ============================================== -->
+    <div id="dependencies" class="tab-content animate-[fadeIn_0.3s_ease-in-out]">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
+        <h2 class="text-xl font-bold mb-2">The Shared Technical Roots</h2>
+        <p class="text-[var(--muted-foreground)] mb-8">
+          Financial concentration is only half the picture. The ecosystem relies heavily on a few core libraries and SDKs maintained by a small group of Long-Term Support (LTS) developers. 
+          When downstream apps rely on these libraries, the maintainer's true Herfindahl-Hirschman Index (HHI) for network control is significantly higher than their grant amount suggests.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <!-- Dependency Node -->
+          <div class="border border-[var(--border)] bg-[var(--sidebar)] p-5 rounded-lg flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4 border-b border-[var(--border)] pb-3">
+              <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-500 flex items-center justify-center font-bold">P</div>
+              <div>
+                <div class="font-bold text-[var(--foreground)]">PabloF7z</div>
+                <div class="text-xs text-[var(--muted-foreground)]">Core Infra: <a href="https://github.com/nostr-dev-kit/ndk" target="_blank" class="hover:text-[var(--foreground)]">NDK</a></div>
+              </div>
+            </div>
+            <div class="text-sm text-[var(--muted-foreground)] mb-2">Downstream Ecosystem:</div>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs">Highlighter</span>
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs">nsecBunker</span>
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs italic">Dozens of web clients</span>
+            </div>
+          </div>
+
+          <!-- Dependency Node -->
+          <div class="border border-[var(--border)] bg-[var(--sidebar)] p-5 rounded-lg flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4 border-b border-[var(--border)] pb-3">
+              <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-500 flex items-center justify-center font-bold">V</div>
+              <div>
+                <div class="font-bold text-[var(--foreground)]">Vitor Pamplona</div>
+                <div class="text-xs text-[var(--muted-foreground)]">Core Infra: Quartz Kotlin Lib</div>
+              </div>
+            </div>
+            <div class="text-sm text-[var(--muted-foreground)] mb-2">Downstream Ecosystem:</div>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <a href="https://github.com/vitorpamplona/amethyst" target="_blank" class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs hover:bg-[var(--muted-foreground)] transition-colors">Amethyst</a>
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs italic">Other Kotlin tooling</span>
+            </div>
+          </div>
+
+          <!-- Dependency Node -->
+          <div class="border border-[var(--border)] bg-[var(--sidebar)] p-5 rounded-lg flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4 border-b border-[var(--border)] pb-3">
+              <div class="w-10 h-10 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center font-bold">W</div>
+              <div>
+                <div class="font-bold text-[var(--foreground)]">William Casarin / team</div>
+                <div class="text-xs text-[var(--muted-foreground)]">Core Infra: <a href="https://github.com/damus-io/nostrdb" target="_blank" class="hover:text-[var(--foreground)]">NostrDB</a></div>
+              </div>
+            </div>
+            <div class="text-sm text-[var(--muted-foreground)] mb-2">Downstream Ecosystem:</div>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <a href="https://github.com/damus-io/damus" target="_blank" class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs hover:bg-[var(--muted-foreground)] transition-colors">Damus</a>
+              <a href="https://github.com/damus-io/notedeck" target="_blank" class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs hover:bg-[var(--muted-foreground)] transition-colors">Notedeck</a>
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs">NWC</span>
+            </div>
+          </div>
+
+          <!-- Dependency Node -->
+          <div class="border border-[var(--border)] bg-[var(--sidebar)] p-5 rounded-lg flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4 border-b border-[var(--border)] pb-3">
+              <div class="w-10 h-10 rounded-full bg-orange-500/20 text-orange-500 flex items-center justify-center font-bold">H</div>
+              <div>
+                <div class="font-bold text-[var(--foreground)]">Hodlbod</div>
+                <div class="text-xs text-[var(--muted-foreground)]">Core Infra: <a href="https://github.com/coracle-social/welshman" target="_blank" class="hover:text-[var(--foreground)]">Welshman</a></div>
+              </div>
+            </div>
+            <div class="text-sm text-[var(--muted-foreground)] mb-2">Downstream Ecosystem:</div>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <a href="https://coracle.social" target="_blank" class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs hover:bg-[var(--muted-foreground)] transition-colors">Coracle</a>
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs">Successor apps</span>
+            </div>
+          </div>
+
+          <!-- Dependency Node -->
+          <div class="border border-[var(--border)] bg-[var(--sidebar)] p-5 rounded-lg flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4 border-b border-[var(--border)] pb-3">
+              <div class="w-10 h-10 rounded-full bg-red-500/20 text-red-500 flex items-center justify-center font-bold">H</div>
+              <div>
+                <div class="font-bold text-[var(--foreground)]">hzrd149</div>
+                <div class="text-xs text-[var(--muted-foreground)]">Core Infra: <a href="https://github.com/hzrd149/applesauce" target="_blank" class="hover:text-[var(--foreground)]">Applesauce</a></div>
+              </div>
+            </div>
+            <div class="text-sm text-[var(--muted-foreground)] mb-2">Downstream Ecosystem:</div>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs">noStrudel</span>
+              <a href="https://github.com/hzrd149/blossom" target="_blank" class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs hover:bg-[var(--muted-foreground)] transition-colors">Blossom</a>
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs">nsite</span>
+            </div>
+          </div>
+
+          <!-- Dependency Node -->
+          <div class="border border-[var(--border)] bg-[var(--sidebar)] p-5 rounded-lg flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4 border-b border-[var(--border)] pb-3">
+              <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-500 flex items-center justify-center font-bold">Y</div>
+              <div>
+                <div class="font-bold text-[var(--foreground)]">Yuki Kishimoto / team</div>
+                <div class="text-xs text-[var(--muted-foreground)]">Core Infra: <a href="https://github.com/rust-nostr/nostr" target="_blank" class="hover:text-[var(--foreground)]">rust-nostr</a></div>
+              </div>
+            </div>
+            <div class="text-sm text-[var(--muted-foreground)] mb-2">Downstream Ecosystem:</div>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="px-2 py-1 bg-[var(--background)] border border-[var(--border)] rounded text-xs italic">Reusable Rust infrastructure powering multiple apps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- TAB 3: TIMELINE                                -->
+    <!-- ============================================== -->
+    <div id="timeline" class="tab-content animate-[fadeIn_0.3s_ease-in-out]">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-8">
+        <h2 class="text-xl font-bold mb-8">Funding Deployment Timeline</h2>
+        
+        <div class="relative border-l-2 border-[var(--border)] ml-4 space-y-10">
+          
+          <div class="relative pl-8">
+            <div class="absolute w-4 h-4 bg-orange-500 rounded-full -left-[9px] top-1 border-4 border-[var(--card)]"></div>
+            <div class="text-sm font-bold text-orange-500 mb-1">December 2022</div>
+            <div class="text-lg font-bold text-[var(--foreground)]">14.17 BTC Fiatjaf Fund</div>
+            <p class="text-[var(--muted-foreground)] mt-1 max-w-2xl">Jack Dorsey deploys 14.17 BTC directly to Fiatjaf following a Twitter exchange. This acts as an initial catalyst for dedicated Nostr development.</p>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute w-4 h-4 bg-green-500 rounded-full -left-[9px] top-1 border-4 border-[var(--card)]"></div>
+            <div class="text-sm font-bold text-green-500 mb-1">May 2023</div>
+            <div class="text-lg font-bold text-[var(--foreground)]">#startsmall $10M Grant (via OpenSats)</div>
+            <p class="text-[var(--muted-foreground)] mt-1 max-w-2xl">Jack Dorsey announces a $10M donation to OpenSats, explicitly earmarking half ($5M) to advance the Nostr protocol. A committee of Nostr developers is established.</p>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1 border-4 border-[var(--card)]"></div>
+            <div class="text-sm font-bold text-blue-500 mb-1">2024</div>
+            <div class="text-lg font-bold text-[var(--foreground)]">LTS Grants Formalized & Concentration Sets</div>
+            <p class="text-[var(--muted-foreground)] mt-1 max-w-2xl">OpenSats begins issuing Long-Term Support (LTS) grants, formally supporting repeat-funders (Damus, Coracle, Soapbox, Amethyst). This establishes the HHI concentration base. By the end of 2024, ~$8.9M is allocated.</p>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1 border-4 border-[var(--card)]"></div>
+            <div class="text-sm font-bold text-purple-500 mb-1">2025</div>
+            <div class="text-lg font-bold text-[var(--foreground)]">Payout Consolidation</div>
+            <p class="text-[var(--muted-foreground)] mt-1 max-w-2xl">$3.2M in payouts mapped. Approximately 35% of the Nostr Fund allocation is directed toward LTS maintainers, highlighting the ecosystem's reliance on a concentrated infrastructure core.</p>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute w-4 h-4 bg-[var(--foreground)] rounded-full -left-[9px] top-1 border-4 border-[var(--card)]"></div>
+            <div class="text-sm font-bold text-[var(--foreground)] mb-1">2026 (Mapped Future)</div>
+            <div class="text-lg font-bold text-[var(--foreground)]">Ongoing Payable Structure</div>
+            <p class="text-[var(--muted-foreground)] mt-1 max-w-2xl">H1 2026 shows $1.43M in payouts. June 2026 currently holds $801K in mapped payables.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // SVG Icons
+    const ICONS = {
+      gh: '<svg class="w-3.5 h-3.5 inline-block text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>',
+      web: '<svg class="w-3.5 h-3.5 inline-block text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>'
+    };
+
+    const btcData = [
+      { name: "Alex Gleason", labels: [{n:"Soapbox", g:"https://github.com/soapbox-pub", w:"https://soapbox.pub"}, {n:"Ditto", g:"https://github.com/ditto-pub", w:"https://ditto.pub"}, {n:"Mostr"}, {n:"Nostrify"}, {n:"Shakespeare"}], btc: 8.67230507 },
+      { name: "PabloF7z", labels: [{n:"NDK", g:"https://github.com/nostr-dev-kit/ndk"}, {n:"nsecBunker"}, {n:"Highlighter"}, {n:"reusable TS infra"}], btc: 7.34463998 },
+      { name: "William Casarin / jb55", labels: [{n:"Damus", g:"https://github.com/damus-io/damus", w:"https://damus.io"}, {n:"Notedeck", g:"https://github.com/damus-io/notedeck"}, {n:"NostrDB", g:"https://github.com/damus-io/nostrdb"}, {n:"NWC"}, {n:"messaging"}], btc: 6.96343560 },
+      { name: "Hodlbod", labels: [{n:"Coracle", g:"https://github.com/coracle-social/coracle", w:"https://coracle.social"}, {n:"Flotilla"}, {n:"Welshman"}, {n:"infra"}], btc: 5.73101947 },
+      { name: "DanConwayDev", labels: [{n:"ngit", g:"https://github.com/DanConwayDev/ngit-cli", w:"https://ngit.dev"}], btc: 5.36124313 },
+      { name: "0xchat Team", labels: [{n:"0xchat", g:"https://github.com/0xchat-app", w:"https://0xchat.com"}], btc: 3.61740436 },
+      { name: "Vitor Pamplona", labels: [{n:"Amethyst", g:"https://github.com/vitorpamplona/amethyst"}, {n:"Quartz Kotlin lib"}], btc: 2.92461090 },
+      { name: "hzrd149", labels: [{n:"Applesauce", g:"https://github.com/hzrd149/applesauce"}, {n:"Blossom"}, {n:"noStrudel"}, {n:"nsite"}], btc: 2.30164585 },
+      { name: "Daniele", labels: [{n:"Mostro", g:"https://github.com/MostroP2P/mostro", w:"https://mostro.network"}], btc: 2.01966510 },
+      { name: "Austin Kelsay & cmdruid", labels: [{n:"Frostr", g:"https://github.com/FROSTR-ORG", w:"https://frostr.org"}], btc: 1.22738299 },
+      { name: "Fran (@franzaps)", labels: [{n:"Zapstore", g:"https://github.com/zapstore/zapstore", w:"https://zapstore.dev"}], btc: 0.90912247 },
+      { name: "Greenart7c3", labels: [{n:"Amber", g:"https://github.com/Greenart7c3/Amber"}, {n:"Citrine", g:"https://github.com/Greenart7c3/Citrine"}], btc: 0.79157093 }, 
+      { name: "ContextVM (Nisarg & Gzuuus)", labels: [{n:"ContextVM", g:"https://github.com/ContextVM", w:"https://contextvm.org"}], btc: 0.63547798 },
+      { name: "Cody Tseng", labels: [{n:"Jumble", g:"https://github.com/CodyTseng/jumble", w:"https://jumble.social"}], btc: 0.60982479 }
+    ];
+
+    const maxBtc = Math.max(...btcData.map(d => d.btc));
+    const container = document.getElementById('btc-container');
+
+    btcData.forEach((item, index) => {
+      const isTop5 = index < 5;
+      const widthPercent = (item.btc / maxBtc) * 100;
+      
+      let labelsHtml = item.labels.map(l => {
+        let links = '';
+        if (l.g) links += `<a href="${l.g}" target="_blank" title="GitHub" class="flex items-center justify-center">${ICONS.gh}</a>`;
+        if (l.w) links += `<a href="${l.w}" target="_blank" title="Website" class="flex items-center justify-center">${ICONS.web}</a>`;
+        return `<span class="bg-[var(--background)] px-2 py-1 rounded border border-[var(--border)] flex items-center h-7">${l.n}${links ? '<span class="ml-2 border-l border-[var(--border)] pl-2 flex items-center gap-2 h-full">'+links+'</span>' : ''}</span>`;
+      }).join('');
+
+      const el = document.createElement('div');
+      el.className = "flex flex-col gap-1.5 group";
+      el.innerHTML = `
+        <div class="flex justify-between items-baseline">
+          <div class="flex items-center gap-2">
+            ${isTop5 ? '<span class="text-xs bg-orange-500/20 text-orange-600 dark:text-orange-400 px-1.5 py-0.5 rounded font-bold border border-orange-500/30">#' + (index+1) + '</span>' : ''}
+            <span class="font-semibold text-[var(--foreground)]">${item.name}</span>
+          </div>
+          <span class="font-mono text-sm text-[var(--foreground)]">${item.btc.toFixed(8)} BTC</span>
+        </div>
+        <div class="w-full h-2.5 bg-[var(--sidebar)] rounded-full overflow-hidden border border-[var(--border)] mb-1">
+          <div class="h-full rounded-full animate-bar bar-hover transition-colors ${isTop5 ? 'bg-orange-500' : 'bg-blue-500'}" 
+               style="width: 0%;" data-width="${widthPercent}%"></div>
+        </div>
+        <div class="text-xs text-[var(--muted-foreground)] flex flex-wrap gap-2">
+          ${labelsHtml}
+        </div>
+      `;
+      container.appendChild(el);
+    });
+
+    setTimeout(() => {
+      document.querySelectorAll('.animate-bar').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width');
+      });
+    }, 100);
+  </script>
+</body>
+</html>
