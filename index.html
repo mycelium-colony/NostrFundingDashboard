@@ -206,49 +206,100 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- TAB 3: TIMELINE                                -->
+    <!-- TAB 3: TIMELINE & GOVERNANCE                   -->
     <!-- ============================================== -->
     <div id="timeline" class="tab-content animate-[fadeIn_0.3s_ease-in-out]">
       <div class="card-bg border rounded-xl p-8">
-        <h2 class="text-xl font-bold mb-8">Funding Deployment Timeline</h2>
+        <h2 class="text-xl font-bold mb-4">Funding Deployment & Governance Timeline</h2>
+        <p class="text-muted mb-8 max-w-4xl">
+          Tracing the flow of capital alongside the structural evolution of the OpenSats board. The data highlights a pattern of overlapping industry roles, the use of abstracted LLCs for board seats, and critical unresolved governance gaps.
+        </p>
         
-        <div class="relative border-l-2 border-subtle ml-4 space-y-10">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
           
-          <div class="relative pl-8">
-            <div class="absolute w-4 h-4 bg-orange-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
-            <div class="text-sm font-bold text-orange-500 mb-1">December 2022</div>
-            <div class="text-lg font-bold">14.17 BTC Fiatjaf Fund</div>
-            <p class="text-muted mt-1 max-w-2xl">Jack Dorsey deploys 14.17 BTC directly to Fiatjaf following a Twitter exchange. This acts as an initial catalyst for dedicated Nostr development.</p>
+          <!-- TIMELINE -->
+          <div class="relative border-l-2 border-subtle ml-4 space-y-8">
+            
+            <div class="relative pl-8">
+              <div class="absolute w-4 h-4 bg-orange-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
+              <div class="text-sm font-bold text-orange-500 mb-1">2020–2022: Formation</div>
+              <div class="text-lg font-bold">Early Board & 14.17 BTC Catalyst</div>
+              <p class="text-muted mt-1 text-sm">OpenSats is founded. Ben Price and Lisa Neigut are listed as directors. In Dec 2022, Jack Dorsey deploys 14.17 BTC directly to Fiatjaf, sparking dedicated Nostr development.</p>
+            </div>
+
+            <div class="relative pl-8">
+              <div class="absolute w-4 h-4 bg-green-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
+              <div class="text-sm font-bold text-green-500 mb-1">2023: The First Wave</div>
+              <div class="text-lg font-bold">$10M Grant & Board Expansion</div>
+              <p class="text-muted mt-1 text-sm">Jack Dorsey gifts $10M ($5M to Nostr). NVK and Gigi join the board. First major Nostr grant wave hits in July. By September, minutes reveal discussions about "setting up LLCs for board members."</p>
+            </div>
+
+            <div class="relative pl-8">
+              <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
+              <div class="text-sm font-bold text-blue-500 mb-1">2024: LLCs & LTS Formalization</div>
+              <div class="text-lg font-bold">$21M Grant & Structural Obfuscation</div>
+              <p class="text-muted mt-1 text-sm">In March, the board unanimously approves 9 LLCs (Freedom Tech LLC, Orange Coin Good LLC, etc.) as board members. May brings another $21M #startsmall gift ($5M to Nostr). Long-Term Support (LTS) rolls out.</p>
+            </div>
+
+            <div class="relative pl-8">
+              <div class="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
+              <div class="text-sm font-bold text-purple-500 mb-1">2025: Consolidation & Recusals</div>
+              <div class="text-lg font-bold">92.3% LTS Retention</div>
+              <p class="text-muted mt-1 text-sm">Nostr LTS retains 12 of 13 people. In September, an <strong>unidentified board member auto-recuses from ALL Nostr applications</strong>, dropping the approval threshold to 4/8. The reason and identity remain unknown.</p>
+            </div>
+
+            <div class="relative pl-8">
+              <div class="absolute w-4 h-4 bg-white rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
+              <div class="text-sm font-bold text-white mb-1">2026: Restructuring</div>
+              <div class="text-lg font-bold">Return to "Natural Persons"</div>
+              <p class="text-muted mt-1 text-sm">Following 3,000+ application evaluations, James O'Beirne resigns in June while his grant plan is discussed. The board votes to restructure back to "natural persons". NVK's tenure ends in August.</p>
+            </div>
+
           </div>
 
-          <div class="relative pl-8">
-            <div class="absolute w-4 h-4 bg-green-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
-            <div class="text-sm font-bold text-green-500 mb-1">May 2023</div>
-            <div class="text-lg font-bold">#startsmall $10M Grant (via OpenSats)</div>
-            <p class="text-muted mt-1 max-w-2xl">Jack Dorsey announces a $10M donation to OpenSats, explicitly earmarking half ($5M) to advance the Nostr protocol. A committee of Nostr developers is established.</p>
-          </div>
+          <!-- GOVERNANCE & OVERLAPS -->
+          <div class="space-y-8">
+            
+            <div class="sidebar-bg border border-subtle rounded-xl p-6">
+              <h3 class="text-lg font-bold border-b border-subtle pb-2 mb-4 text-orange-400">Public Role Overlaps (The Grantors)</h3>
+              <ul class="space-y-4 text-sm">
+                <li>
+                  <div class="font-bold text-white">Lisa Neigut</div>
+                  <div class="text-muted">OpenSats <span class="mx-1 text-slate-500">|</span> The Bitcoin Company <span class="mx-1 text-slate-500">|</span> Base58 <span class="mx-1 text-slate-500">|</span> Ego Death Capital</div>
+                </li>
+                <li>
+                  <div class="font-bold text-white">Ben Price</div>
+                  <div class="text-muted">OpenSats <span class="mx-1 text-slate-500">|</span> The Bitcoin Company</div>
+                </li>
+                <li>
+                  <div class="font-bold text-white">Gigi</div>
+                  <div class="text-muted">OpenSats <span class="mx-1 text-slate-500">|</span> The Bitcoin Company <span class="mx-1 text-slate-500">|</span> Sovereign Engineering</div>
+                </li>
+                <li>
+                  <div class="font-bold text-white">Matt Odell</div>
+                  <div class="text-muted">OpenSats <span class="mx-1 text-slate-500">|</span> Ten31 <span class="mx-1 text-slate-500">|</span> Bitcoin Park</div>
+                </li>
+                <li>
+                  <div class="font-bold text-white">NVK</div>
+                  <div class="text-muted">OpenSats <span class="mx-1 text-slate-500">|</span> Nostr Evaluation <span class="mx-1 text-slate-500">|</span> Coinkite</div>
+                </li>
+                <li>
+                  <div class="font-bold text-white">James O’Beirne</div>
+                  <div class="text-muted">OpenSats Board <span class="mx-1 text-slate-500">|</span> Grant Assessments <span class="mx-1 text-slate-500">|</span> Bitcoin Core/NYDIG</div>
+                </li>
+              </ul>
+            </div>
 
-          <div class="relative pl-8">
-            <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
-            <div class="text-sm font-bold text-blue-500 mb-1">2024</div>
-            <div class="text-lg font-bold">LTS Grants Formalized & Concentration Sets</div>
-            <p class="text-muted mt-1 max-w-2xl">OpenSats begins issuing Long-Term Support (LTS) grants, formally supporting repeat-funders (Damus, Coracle, Soapbox, Amethyst). This establishes the HHI concentration base. By the end of 2024, ~$8.9M is allocated.</p>
-          </div>
+            <div class="sidebar-bg border border-red-900/50 bg-red-900/10 rounded-xl p-6">
+              <h3 class="text-lg font-bold border-b border-red-900/50 pb-2 mb-4 text-red-400">Unresolved Gaps</h3>
+              <ul class="space-y-2 text-sm text-muted list-disc pl-4 marker:text-red-500">
+                <li>Exact human mapping behind each of the 9 director LLCs (Freedom Tech LLC, Orange Coin Good LLC, etc.)</li>
+                <li>Identity and reason for the blanket Nostr recusal in 2025</li>
+                <li>Exact relationship behind FY2024 Form 990 “YES” family/business relationship disclosure</li>
+              </ul>
+            </div>
 
-          <div class="relative pl-8">
-            <div class="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
-            <div class="text-sm font-bold text-purple-500 mb-1">2025</div>
-            <div class="text-lg font-bold">Payout Consolidation</div>
-            <p class="text-muted mt-1 max-w-2xl">$3.2M in payouts mapped. Approximately 35% of the Nostr Fund allocation is directed toward LTS maintainers, highlighting the ecosystem's reliance on a concentrated infrastructure core.</p>
           </div>
-
-          <div class="relative pl-8">
-            <div class="absolute w-4 h-4 bg-white rounded-full -left-[9px] top-1 border-4 border-[#1e293b]"></div>
-            <div class="text-sm font-bold text-white mb-1">2026 (Mapped Future)</div>
-            <div class="text-lg font-bold">Ongoing Payable Structure</div>
-            <p class="text-muted mt-1 max-w-2xl">H1 2026 shows $1.43M in payouts. June 2026 currently holds $801K in mapped payables.</p>
-          </div>
-
         </div>
       </div>
     </div>
